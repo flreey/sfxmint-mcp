@@ -1,0 +1,13 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.sfxmint/sounds",
+  "description": "Free CC0 sound effects for agents: search 4,000+ sounds, hotlink MP3/WAV, generate SFX from text.",
+  "version": "1.0.0",
+  "websiteUrl": "https://sfxmint.com/api/docs",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://sfxmint.com/mcp"
+    }
+  ]
+}
