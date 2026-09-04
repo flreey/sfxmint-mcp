@@ -1,6 +1,6 @@
 # SFXMint MCP Server
 
-Free CC0 sound effects for AI agents. Search 4,000+ sounds, get permanent hotlinkable MP3/WAV URLs, and generate new SFX from text — **no API key, no signup**.
+Free CC0 sound effects for AI agents. Search 4,600+ sounds, get permanent hotlinkable MP3/WAV URLs, and generate new SFX from text — **no API key, no signup**.
 
 - **Endpoint (Streamable HTTP):** `https://sfxmint.com/mcp`
 - **Docs:** https://sfxmint.com/api/docs
@@ -23,13 +23,23 @@ Cursor / generic `mcpServers` config:
 { "mcpServers": { "sfxmint": { "url": "https://sfxmint.com/mcp" } } }
 ```
 
+Prefer a skill over a server? This repo also ships an Agent Skill that uses the plain HTTP API — no MCP server required:
+
+```bash
+npx skills add flreey/sfxmint-mcp -y
+```
+
+It teaches the agent to ask by *purpose* (role → set → search) instead of guessing keywords, and carries ready-to-paste React / Phaser / plain-HTML snippets. Source: [`skills/sfxmint/SKILL.md`](skills/sfxmint/SKILL.md).
+
 ## Tools
 
 | Tool | What it does |
 |---|---|
-| `search_sounds` | Keyword search over 4,000+ sounds; returns direct MP3/WAV URLs |
-| `get_sound` | Full metadata for one sound (incl. generation prompt, license) |
-| `generate_sound` | Text-to-SFX (up to 12 s); returns permanent URLs. Rate-limited 3/day per IP |
+| `get_role_sound` | **Start here.** Ask by event — `button-click`, `purchase-success`, `error`, `coin`, `rain-loop`. Returns one QA-checked default plus alternates; plain-English aliases work |
+| `get_sound_set` | A coherent kit for one product in one call (15 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
+| `search_sounds` | Free-text search over 4,600+ sounds; never returns empty (semantic fallback) |
+| `get_sound` | Full metadata for one sound (incl. generation prompt, measured acoustics, license) |
+| `generate_sound` | Text-to-SFX (output 1–12 s, takes 10–60 s to render); returns permanent URLs. Rate-limited 3/day per client |
 | `get_job` | Status of a generation job |
 
 ## Example
