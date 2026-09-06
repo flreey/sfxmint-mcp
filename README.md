@@ -7,7 +7,7 @@ Free CC0 sound effects for AI agents. Search 4,600+ sounds, get permanent hotlin
 - **Registry:** published as [`com.sfxmint/sounds`](https://registry.modelcontextprotocol.io/v0/servers?search=sfxmint) on the official MCP Registry
 - **License of all audio:** [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) — public domain, commercial use welcome, no attribution required
 
-Every sound is AI-generated (Stable Audio) or procedurally synthesized, so the library is copyright-clean by construction. Audio URLs are permanent, immutable, CORS-enabled and free to hotlink — safe to embed directly in generated apps, games and videos.
+Sounds are AI-generated or procedurally synthesized and offered under CC0. Audio URLs are immutable, CORS-enabled and free to hotlink. Download files into the project when offline playback is required; preview suitability in the actual app or game.
 
 ## Quick start
 
@@ -29,23 +29,28 @@ Prefer a skill over a server? This repo also ships an Agent Skill that uses the 
 npx skills add flreey/sfxmint-mcp -y
 ```
 
-It teaches the agent to ask by *purpose* (role → set → search) instead of guessing keywords, and carries ready-to-paste React / Phaser / plain-HTML snippets. Source: [`skills/sfxmint/SKILL.md`](skills/sfxmint/SKILL.md).
+The agent chooses a role for one event, a set for several events, or structured search for a description or gap. These are task branches, not a required sequence. Library files, other permitted sources and local synthesis can be mixed. The skill includes React / Phaser / plain-HTML integration examples. Source: [`skills/sfxmint/SKILL.md`](skills/sfxmint/SKILL.md).
 
 ## Tools
 
 | Tool | What it does |
 |---|---|
-| `get_role_sound` | **Start here.** Ask by event — `button-click`, `purchase-success`, `error`, `coin`, `rain-loop`. Returns one QA-checked default plus alternates; plain-English aliases work |
-| `get_sound_set` | A coherent kit for one product in one call (15 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
-| `search_sounds` | Free-text search over 4,600+ sounds; never returns empty (semantic fallback) |
+| `get_role_sound` | Ask by event — `button-click`, `purchase-success`, `error`, `coin`, `rain-loop`. Returns a file-checked candidate plus alternates; plain-English aliases work |
+| `get_sound_set` | Candidates grouped by event and style (15 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
+| `search_sounds` | Free-text retrieval with explicit duration, loop and format requirements; hard constraints can produce no candidates |
 | `get_sound` | Full metadata for one sound (incl. generation prompt, measured acoustics, license) |
 | `generate_sound` | Text-to-SFX (output 1–12 s, takes 10–60 s to render); returns permanent URLs. Rate-limited 3/day per client |
 | `get_job` | Status of a generation job |
 
-## Example
+## Requirements, processing and acceptance
 
-> "Find me a rain ambience loop" → `search_sounds(query: "rain ambience")` →
-> `https://sfxmint.com/dl/ambience-rain-01.mp3` (CC0, hotlink-safe, 11 s)
+Use REST structured search (`response=structured&limit=3`) or the matching MCP parameters to pass required duration, loop and format explicitly. Check returned requirements; do not substitute `near_matches`. Scores and match types describe ranking, not listening confidence. Legacy `loopable` does not prove a seamless loop.
+
+Sets accept `format=wav|mp3`: `download_urls` follows the requested format, legacy `urls` stays MP3, and `missing_roles` identifies incomplete sets. File decoding and hashes do not certify scene suitability. `content_check` is scoped to the exact scene, event, format and SHA256; unknown content is not accepted.
+
+Task-permitted trimming, filtering and level changes are allowed. Retain originals, source URLs, license, processing recipes and new file hashes; re-measure requirements and preview the result. Changed bytes and new scenes do not inherit the original acceptance. Online generation is separate and only used when the task permits it.
+
+Use URLs returned by the live API, without inventing or rewriting them. See the [API docs](https://sfxmint.com/api/docs), [Phaser guide](https://sfxmint.com/guides/phaser-web-game-sounds), [React guide](https://sfxmint.com/guides/react-app-sounds), and [download example](https://sfxmint.com/examples/download-sounds.mjs).
 
 ## Rate limits & fair use
 
