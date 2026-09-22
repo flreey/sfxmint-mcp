@@ -31,6 +31,14 @@ npx skills add flreey/sfxmint-mcp -y
 
 The agent chooses a role for one event, a set for several events, or structured search for a description or gap. These are task branches, not a required sequence. Library files, other permitted sources and local synthesis can be mixed. The skill includes React / Phaser / plain-HTML integration examples. Source: [`skills/sfxmint/SKILL.md`](skills/sfxmint/SKILL.md).
 
+No agent involved? The [`sfxmint`](https://www.npmjs.com/package/sfxmint) CLI puts the same files in a project directly:
+
+```bash
+npx sfxmint add coin jump hit
+```
+
+It writes the audio plus a `sounds.json` manifest recording each file's source URL, SHA-256 and license, and ships a small Web Audio runtime (`createSoundboard`) for first-gesture unlock, overlapping cues and a persisted mute. Source: [flreey/sfxmint-npm](https://github.com/flreey/sfxmint-npm).
+
 ## Tools
 
 | Tool | What it does |
