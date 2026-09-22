@@ -47,9 +47,8 @@ It writes the audio plus a `sounds.json` manifest recording each file's source U
 | `get_sound_set` | Candidates grouped by event and style (15 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
 | `search_sounds` | Free-text retrieval with explicit duration, loop and format requirements; hard constraints can produce no candidates |
 | `get_sound` | Full metadata for one sound (incl. generation prompt, measured acoustics, license) |
-| `get_job` | Status of a historical generation job |
 
-`generate_sound` is **retired** and no longer advertised: calling it returns an error, and `POST /api/v1/generate` returns HTTP 410 `generation_retired`. SFXMint does not create new sounds. External generation options are listed at https://sfxmint.com/generate and have their own pricing and licenses.
+`generate_sound` and `get_job` are **retired** and no longer advertised. Both are still recognised — calling either returns a readable retirement notice with `isError`, rather than an unknown-tool error — but neither appears in `tools/list`. `POST /api/v1/generate` returns HTTP 410 `generation_retired`; existing job records stay readable at `GET /api/v1/jobs/{job_id}`. SFXMint does not create new sounds. External generation options are listed at https://sfxmint.com/generate and have their own pricing and licenses.
 
 ## Requirements, processing and acceptance
 
