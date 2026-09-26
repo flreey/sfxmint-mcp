@@ -1,6 +1,6 @@
 # SFXMint MCP Server
 
-Free CC0 sound effects for AI agents. Ask by role, take a coherent set, or search 4,600+ sounds, and get permanent hotlinkable MP3/WAV URLs — **no API key, no signup**.
+Free CC0 sound effects for AI agents. Ask by role, take a coherent set, or search 5,000+ sounds, and get permanent hotlinkable MP3/WAV URLs — **no API key, no signup**.
 
 - **Endpoint (Streamable HTTP):** `https://sfxmint.com/mcp`
 - **Docs:** https://sfxmint.com/api/docs

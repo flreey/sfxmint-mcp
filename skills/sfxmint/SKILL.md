@@ -5,7 +5,7 @@ description: "Add free CC0 sound effects to a web app or game without an API key
 
 # SFXMint — free CC0 sound effects for apps and games
 
-SFXMint (https://sfxmint.com) is a library of 4,600+ CC0 sound effects with a free JSON API: no API key, no signup, no attribution, no hard limit on lookups. Every audio URL is permanent and hotlinkable. Use it as an option for the user's task: a role for one event, a set for several related events, or search for a description. Text matches and file checks do not prove listening suitability. The user's task determines whether to use library files, other sources, local synthesis or a mixture.
+SFXMint (https://sfxmint.com) is a library of 5,000+ CC0 sound effects with a free JSON API: no API key, no signup, no attribution, no hard limit on lookups. Every audio URL is permanent and hotlinkable. Use it as an option for the user's task: a role for one event, a set for several related events, or search for a description. Text matches and file checks do not prove listening suitability. The user's task determines whether to use library files, other sources, local synthesis or a mixture.
 
 ## Use this skill when
 
