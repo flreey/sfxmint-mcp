@@ -73,10 +73,10 @@ Base `https://sfxmint.com`. JSON, `Access-Control-Allow-Origin: *`, no key. Appe
 | `GET /api/v1/sets?via=skill` | `[{id, name, tagline, use_for, style, roles, url, page_url}]` |
 | `GET /api/v1/sets/{id}?via=skill` | `{id, name, tagline, use_for, style, license, page_url, sounds:{<role>:{role, label, slug, title, duration_ms, loopable, acoustics, mp3_url, wav_url, page_url, alternates:[slug], family_url}}, urls:{<role>: mp3_url}}` |
 | `GET /api/v1/search?q=&category=&limit=20&max_duration_ms=&loop=&format=wav|mp3&via=skill` | legacy array `[{slug, title, duration_ms, tags, category, loopable, acoustics, score, match, license, mp3_url, wav_url, page_url}]`; add `response=structured` for `request_id`, parsed constraints, candidate `checks`, `near_matches`, `unverified_requirements` and diagnostics. `score` is ranking only. |
-| `GET /api/v1/sounds/{slug}?via=skill` | full metadata incl. `prompt`, `acoustics`, `loopable`, `peaks_url` |
+| `GET /api/v1/sounds/{slug}?via=skill` | full metadata incl. `description`, `acoustics`, `loopable`, `peaks_url` |
 | `https://sfxmint.com/dl/{slug}.mp3` · `.wav` | the audio itself — no query parameters here (see Hotlink rules) |
 
-`acoustics` = `{attack_ms, tail_ms, centroid_hz, character:["bright","punchy","tight"]}` measured from the audio (`null` if unmeasured). Use it to choose between alternates: short `tail_ms` for UI cues, low `centroid_hz` for soft/dark, high for bright. `recommendation_status` separates eligible, unverified and excluded rows. `loopable` is a legacy flag; `loop_status: "prepared"` marks prepared loop metadata, while seam listening evidence and MP3 padding remain separate and may be unknown. Prompt/tag matches are retrieval evidence, not content listening.
+`acoustics` = `{attack_ms, tail_ms, centroid_hz, character:["bright","punchy","tight"]}` measured from the audio (`null` if unmeasured). Use it to choose between alternates: short `tail_ms` for UI cues, low `centroid_hz` for soft/dark, high for bright. `recommendation_status` separates eligible, unverified and excluded rows. `loopable` is a legacy flag; `loop_status: "prepared"` marks prepared loop metadata, while seam listening evidence and MP3 padding remain separate and may be unknown. Text and tag matches are retrieval evidence, not content listening.
 
 ```bash
 curl "https://sfxmint.com/api/v1/roles/purchase-success?via=skill"
