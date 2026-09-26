@@ -43,8 +43,8 @@ It writes the audio plus a `sounds.json` manifest recording each file's source U
 
 | Tool | What it does |
 |---|---|
-| `get_role_sound` | Ask by event — `button-click`, `purchase-success`, `error`, `coin`, `rain-loop`. Returns a file-checked candidate plus alternates; plain-English aliases work |
-| `get_sound_set` | Candidates grouped by event and style (15 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
+| `get_role_sound` | Ask by event — `button-click`, `purchase-success`, `error`, `coin`, `notification`. Returns a file-checked candidate plus alternates; plain-English aliases work |
+| `get_sound_set` | Candidates grouped by event and style (18 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
 | `search_sounds` | Free-text retrieval with explicit duration, loop and format requirements; hard constraints can produce no candidates |
 | `get_sound` | Full metadata for one sound (incl. generation prompt, measured acoustics, license) |
 

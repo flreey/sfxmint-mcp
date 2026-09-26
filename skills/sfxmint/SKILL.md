@@ -23,7 +23,7 @@ SFXMint (https://sfxmint.com) is a library of 4,600+ CC0 sound effects with a fr
 These are task branches, not a required sequence. A whole-project request can start with a set; use roles or search for gaps. Do not force a library result when another permitted approach fits better.
 
 1. **Role** — the user names an event or interaction.
-   `GET https://sfxmint.com/api/v1/roles/{role}?via=skill` returns a file-QC-eligible default (`slug`, `mp3_url`, `wav_url`) plus `alternates` when the ready gate is enabled. Role ids and aliases both work: `button-click`, `click`, `purchase-success`, `dialogue-blip`, `rain-loop`, `error`, `notification`, `coin`, `jump`, `explosion`. Unknown role → HTTP 404 with `roles_url`; use the index or search. An unverified result is not a content acceptance. Full list: `GET https://sfxmint.com/api/v1/roles?via=skill`.
+   `GET https://sfxmint.com/api/v1/roles/{role}?via=skill` returns a file-QC-eligible default (`slug`, `mp3_url`, `wav_url`) plus `alternates` when the ready gate is enabled. Role ids and aliases both work: `button-click`, `click`, `purchase-success`, `dialogue-blip`, `rain-loop`, `error`, `notification`, `coin`, `jump`, `explosion`. Unknown role → HTTP 404 with `roles_url`; use the index or search. A known role whose default fails its own checks (a loop role with no seam-verified file, for example) answers HTTP 200 with `error` (`unverified_sound` or `no_matching_sound`), `near_matches` and `unverified_requirements` but no `slug`: report the gap and do not use a near match as the default. An unverified result is not a content acceptance. Full list: `GET https://sfxmint.com/api/v1/roles?via=skill`.
    Optional `style=crisp|soft|spacious` re-ranks the family by measured acoustics; the default `balanced` is the most typical variant.
 2. **Set** — the user needs several sounds for one product.
    `GET https://sfxmint.com/api/v1/sets/{id}?format=wav&via=skill` returns `sounds` with alternates, `download_urls` for the requested format, and `missing_roles`. Legacy `urls` always maps roles to MP3. A shared set or style does not certify that cues work together: preview them in the actual product.
@@ -58,6 +58,9 @@ Never invent a slug or URL. Use only URLs returned by the API, unchanged.
 | `smart-device` | IoT apps, appliances, wearables, kiosks, in-car UIs | power_on power_off doorbell alarm lock unlock beep vibrate notification error |
 | `wellness` | meditation timers, sleep and focus apps, yoga classes | bowl chime gong bell kalimba rain ocean forest wind fireplace |
 | `ai-coding-tool` | AI agents, CLIs and coding tools — task lifecycle cues | started done failed needs_input warning notification |
+| `acoustic-drum-kit` | drum pads, step sequencers, music sketches and rhythm-game prototypes | kick snare high-tom mid-tom floor-tom closed-hat open-hat crash ride snare-rimshot snare-cross-stick pedal-hat ride-bell |
+| `animal-calls` | animal soundboards, learning activities, videos and games | wolf-howl lion-roar dog-bark cat-meow frog-croak owl-hoot songbird-chirp cow-moo horse-neigh pig-oink sheep-bleat hen-cluck rooster-crow duck-quack bat-screech |
+| `dungeon-traps` | dungeon traps, gates and hidden mechanisms in games | pressure-plate-click spike-scrape gear-ratchet chain-winch portcullis-drop stone-door-grind |
 
 ## API quick reference
 
@@ -91,7 +94,7 @@ After checking conditions, use URLs from the current API response; the values be
 // src/sfx.ts
 const URLS = {
   click: "https://sfxmint.com/dl/ui-click-30.mp3",
-  save: "https://sfxmint.com/dl/feedback-success-22.mp3",
+  save: "https://sfxmint.com/dl/ready-success-01.mp3",
   error: "https://sfxmint.com/dl/feedback-error-34.mp3",
 } as const;
 
