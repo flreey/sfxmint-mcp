@@ -1,6 +1,6 @@
 ---
 name: sfxmint
-description: "Add free CC0 sound effects to a web app or game without an API key, using the SFXMint API (sound roles, sets grouped by event, search) and permanent hotlinkable MP3/WAV URLs. Use when the user asks to add sounds, audio feedback or UI sounds to an app, wants click / notification / success / error / alert sounds, game sound effects (coin, jump, hit, explosion, power-up, game over), ambience loops (rain, forest, drone), or asks where to get free sound effects for an app, game, video, prototype or demo. Not for music, voice or speech."
+description: "Add free CC0 sound effects to a web app or game without an API key, using the SFXMint API (sound roles, sets grouped by event, search) and permanent hotlinkable MP3/WAV URLs. Use when the user asks to add sounds, audio feedback or UI sounds to an app, wants click / notification / success / error / alert sounds, game sound effects (coin, jump, hit, explosion, power-up, game over), ambience (rain, forest, drone), or asks where to get free sound effects for an app, game, video, prototype or demo. Not for music, voice or speech."
 ---
 
 # SFXMint — free CC0 sound effects for apps and games
@@ -10,7 +10,7 @@ SFXMint (https://sfxmint.com) is a library of 4,600+ CC0 sound effects with a fr
 ## Use this skill when
 
 - The user wants sound effects or audio feedback in an app, game, video, prototype or demo.
-- The user names a cue by what it is for: "button click", "purchase success", "error beep", "coin pickup", "dialogue blip", "rain loop", "task done notification".
+- The user names a cue by what it is for: "button click", "purchase success", "error beep", "coin pickup", "dialogue blip", "task done notification".
 - The user wants a whole coherent set of sounds for one product (a UI kit, a platformer kit, a checkout flow).
 
 ## Do not use it for
@@ -23,7 +23,7 @@ SFXMint (https://sfxmint.com) is a library of 4,600+ CC0 sound effects with a fr
 These are task branches, not a required sequence. A whole-project request can start with a set; use roles or search for gaps. Do not force a library result when another permitted approach fits better.
 
 1. **Role** — the user names an event or interaction.
-   `GET https://sfxmint.com/api/v1/roles/{role}?via=skill` returns a file-QC-eligible default (`slug`, `mp3_url`, `wav_url`) plus `alternates` when the ready gate is enabled. Role ids and aliases both work: `button-click`, `click`, `purchase-success`, `dialogue-blip`, `rain-loop`, `error`, `notification`, `coin`, `jump`, `explosion`. Unknown role → HTTP 404 with `roles_url`; use the index or search. A known role whose default fails its own checks (a loop role with no seam-verified file, for example) answers HTTP 200 with `error` (`unverified_sound` or `no_matching_sound`), `near_matches` and `unverified_requirements` but no `slug`: report the gap and do not use a near match as the default. An unverified result is not a content acceptance. Full list: `GET https://sfxmint.com/api/v1/roles?via=skill`.
+   `GET https://sfxmint.com/api/v1/roles/{role}?via=skill` returns a file-QC-eligible default (`slug`, `mp3_url`, `wav_url`) plus `alternates` when the ready gate is enabled. Role ids and aliases both work: `button-click`, `click`, `purchase-success`, `dialogue-blip`, `error`, `notification`, `coin`, `jump`, `explosion`. Unknown role → HTTP 404 with `roles_url`; use the index or search. A known role whose default fails its own checks (for example, no file in its families meets a requested duration or format) answers HTTP 200 with `error` (`unverified_sound` or `no_matching_sound`), `near_matches` and `unverified_requirements` but no `slug`: report the gap and do not use a near match as the default. An unverified result is not a content acceptance. Full list: `GET https://sfxmint.com/api/v1/roles?via=skill`.
    Optional `style=crisp|soft|spacious` re-ranks the family by measured acoustics; the default `balanced` is the most typical variant.
 2. **Set** — the user needs several sounds for one product.
    `GET https://sfxmint.com/api/v1/sets/{id}?format=wav&via=skill` returns `sounds` with alternates, `download_urls` for the requested format, and `missing_roles`. Legacy `urls` always maps roles to MP3. A shared set or style does not certify that cues work together: preview them in the actual product.
@@ -68,7 +68,7 @@ Base `https://sfxmint.com`. JSON, `Access-Control-Allow-Origin: *`, no key. Appe
 
 | Request | Response |
 |---|---|
-| `GET /api/v1/roles?via=skill` | `[{role, label, aliases, families, audiences, loopable, url}]` |
+| `GET /api/v1/roles?via=skill` | `[{role, label, aliases, families, audiences, url}]` |
 | `GET /api/v1/roles/{role}?style=balanced&via=skill` | `{role, label, aliases, audiences, style, license:"CC0-1.0", slug, title, duration_ms, loopable, acoustics, mp3_url, wav_url, page_url, alternates:[same shape], family, family_url, url}` — `style` = balanced (default) / crisp / soft / spacious; 404 → `{error:"not_found", message, roles_url}` |
 | `GET /api/v1/sets?via=skill` | `[{id, name, tagline, use_for, style, roles, url, page_url}]` |
 | `GET /api/v1/sets/{id}?via=skill` | `{id, name, tagline, use_for, style, license, page_url, sounds:{<role>:{role, label, slug, title, duration_ms, loopable, acoustics, mp3_url, wav_url, page_url, alternates:[slug], family_url}}, urls:{<role>: mp3_url}}` |
