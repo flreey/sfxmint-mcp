@@ -5,7 +5,7 @@ description: "Add free CC0 sound effects to a web app or game without an API key
 
 # SFXMint — free CC0 sound effects for apps and games
 
-SFXMint (https://sfxmint.com) is a library of 5,000+ CC0 sound effects with a free JSON API: no API key, no signup, no attribution, no hard limit on lookups. Every audio URL is permanent and hotlinkable. Use it as an option for the user's task: a role for one event, a set for several related events, or search for a description. Text matches and file checks do not prove listening suitability. The user's task determines whether to use library files, other sources, local synthesis or a mixture.
+SFXMint (https://sfxmint.com) is a library of free CC0 sound effects (describe a sound to find it, preview, and download WAV/MP3) with a free JSON API: no API key, no signup, no attribution, no hard limit on lookups. Every audio URL is permanent and hotlinkable. Use it as an option for the user's task: a role for one event, a set for several related events, or search for a description. Text matches and file checks do not prove listening suitability. The user's task determines whether to use library files, other sources, local synthesis or a mixture.
 
 ## Use this skill when
 
@@ -29,7 +29,7 @@ These are task branches, not a required sequence. A whole-project request can st
    `GET https://sfxmint.com/api/v1/sets/{id}?format=wav&via=skill` returns `sounds` with alternates, `download_urls` for the requested format, and `missing_roles`. Legacy `urls` always maps roles to MP3. A shared set or style does not certify that cues work together: preview them in the actual product.
 3. **Search** — free text that matches no role.
    `GET https://sfxmint.com/api/v1/search?q={words}&response=structured&limit=3&via=skill`. Pass required `max_duration_ms`, `loop=true|false`, and `format=wav|mp3` explicitly. Read candidate `checks` and `unverified_requirements`; hard conditions apply before the limit. `match` and `score` describe retrieval and ranking only. Do not promote `near_matches` into compliant candidates. If no candidate meets a hard condition, report the gap or use another task-permitted approach. Add `&category=` when the family is known.
-4. **Generation** — SFXMint no longer generates sounds. `POST /api/v1/generate` returns HTTP 410 `generation_retired` and the MCP `generate_sound` tool is retired; neither creates a job. Do not present generation as an SFXMint capability or as a fallback when the library has no fit. External generation options are described at https://sfxmint.com/generate and have separate pricing and licenses — do not use a paid service without task authorization. Local synthesis remains an option and does not require exhausting this library.
+4. **Generation** — The API and MCP server do not generate sounds. `POST /api/v1/generate` returns HTTP 410 `generation_retired` and the MCP `generate_sound` tool is retired; neither creates a job. When nothing in the library fits (search returns `generate_available`), the user can make the sound on the website at https://sfxmint.com/generate: free previews, then sign up to keep the ones they like. Do not use a paid service without task authorization. Local synthesis remains an option and does not require exhausting this library.
 
 ## Content acceptance and local files
 

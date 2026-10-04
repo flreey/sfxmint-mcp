@@ -1,6 +1,6 @@
 # SFXMint MCP Server
 
-Free CC0 sound effects for AI agents. Ask by role, take a coherent set, or search 5,000+ sounds, and get permanent hotlinkable MP3/WAV URLs — **no API key, no signup**.
+Free CC0 sound effects — [describe a sound to find it](https://sfxmint.com), preview, and download WAV/MP3. **No signup, no API key, no attribution.** Agents can [ask by role](https://sfxmint.com/roles), [take one of 18 sets](https://sfxmint.com/sets), or search the library, and get permanent hotlinkable URLs.
 
 - **Endpoint (Streamable HTTP):** `https://sfxmint.com/mcp`
 - **Docs:** https://sfxmint.com/api/docs
@@ -48,7 +48,7 @@ It writes the audio plus a `sounds.json` manifest recording each file's source U
 | `search_sounds` | Free-text retrieval with explicit duration, loop and format requirements; hard constraints can produce no candidates |
 | `get_sound` | Full metadata for one sound (incl. a short description, measured acoustics, license) |
 
-`generate_sound` and `get_job` are **retired** and no longer advertised. Both are still recognised — calling either returns a readable retirement notice with `isError`, rather than an unknown-tool error — but neither appears in `tools/list`. `POST /api/v1/generate` returns HTTP 410 `generation_retired`; existing job records stay readable at `GET /api/v1/jobs/{job_id}`. SFXMint does not create new sounds. External generation options are listed at https://sfxmint.com/generate and have their own pricing and licenses.
+`generate_sound` and `get_job` are **retired** and no longer advertised. Both are still recognised — calling either returns a readable retirement notice with `isError`, rather than an unknown-tool error — but neither appears in `tools/list`. `POST /api/v1/generate` returns HTTP 410 `generation_retired`; existing job records stay readable at `GET /api/v1/jobs/{job_id}`. The API and this server do not create sounds. When nothing in the library fits (search returns `generate_available`), the user can make the sound on the website at https://sfxmint.com/generate: free previews, then sign up to keep the ones they like.
 
 ## Requirements, processing and acceptance
 
@@ -56,7 +56,7 @@ Use REST structured search (`response=structured&limit=3`) or the matching MCP p
 
 Sets accept `format=wav|mp3`: `download_urls` follows the requested format, legacy `urls` stays MP3, and `missing_roles` identifies incomplete sets. File decoding and hashes do not certify scene suitability. `content_check` is scoped to the exact scene, event, format and SHA256; unknown content is not accepted.
 
-Task-permitted trimming, filtering and level changes are allowed. Retain originals, source URLs, license, processing recipes and new file hashes; re-measure requirements and preview the result. Changed bytes and new scenes do not inherit the original acceptance. SFXMint has no generation path; local synthesis or an external service remains a separate, task-authorized choice.
+Task-permitted trimming, filtering and level changes are allowed. Retain originals, source URLs, license, processing recipes and new file hashes; re-measure requirements and preview the result. Changed bytes and new scenes do not inherit the original acceptance. The API and MCP server have no generation path; generating on the website, local synthesis or an external service remains a separate, task-authorized choice.
 
 Use URLs returned by the live API, without inventing or rewriting them. See the [API docs](https://sfxmint.com/api/docs), [Phaser guide](https://sfxmint.com/guides/phaser-web-game-sounds), [React guide](https://sfxmint.com/guides/react-app-sounds), and [download example](https://sfxmint.com/examples/download-sounds.mjs).
 

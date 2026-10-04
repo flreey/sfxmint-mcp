@@ -1,7 +1,7 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.sfxmint/sounds",
-  "description": "Free CC0 sound effects for agents. Ask by role (button-click, purchase-success, coin, notification) for one QA-checked default, take one of 18 coherent sets, or search 5,000+ sounds. Permanent hotlinkable MP3/WAV, no API key.",
+  "description": "Free CC0 sound effects: describe a sound to find it, ask by role, or take a set. No API key.",
   "version": "1.1.0",
   "websiteUrl": "https://sfxmint.com/api/docs",
   "remotes": [
