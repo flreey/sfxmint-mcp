@@ -1,8 +1,8 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.sfxmint/sounds",
-  "description": "Free CC0 sound effects: describe a sound to find it, ask by role, or take a set. No API key.",
-  "version": "1.1.0",
+  "description": "Free CC0 sound effects: search, roles and sets with no key; generate new ones with an API key.",
+  "version": "1.2.0",
   "websiteUrl": "https://sfxmint.com/api/docs",
   "remotes": [
     {

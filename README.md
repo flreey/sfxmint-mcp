@@ -1,6 +1,6 @@
 # SFXMint MCP Server
 
-Free CC0 sound effects — [describe a sound to find it](https://sfxmint.com), preview, and download WAV/MP3. **No signup, no API key, no attribution.** Agents can [ask by role](https://sfxmint.com/roles), [take one of 18 sets](https://sfxmint.com/sets), or search the library, and get permanent hotlinkable URLs.
+Free CC0 sound effects — [describe a sound to find it](https://sfxmint.com), preview, and download WAV/MP3. **No signup, no API key, no attribution.** Agents can [ask by role](https://sfxmint.com/roles), [take one of 18 sets](https://sfxmint.com/sets), or search the library, and get permanent hotlinkable URLs. With an [API key](https://sfxmint.com/dashboard/keys), they can also generate a sound the library lacks.
 
 - **Endpoint (Streamable HTTP):** `https://sfxmint.com/mcp`
 - **Docs:** https://sfxmint.com/api/docs
@@ -21,6 +21,16 @@ Cursor / generic `mcpServers` config:
 
 ```json
 { "mcpServers": { "sfxmint": { "url": "https://sfxmint.com/mcp" } } }
+```
+
+To let the agent generate sounds too, add your API key (only `generate_sound` and `get_generation` use it):
+
+```bash
+claude mcp add --transport http sfxmint https://sfxmint.com/mcp --header "Authorization: Bearer $SFXMINT_API_KEY"
+```
+
+```json
+{ "mcpServers": { "sfxmint": { "url": "https://sfxmint.com/mcp", "headers": { "Authorization": "Bearer sfx_live_…" } } } }
 ```
 
 Prefer a skill over a server? This repo also ships an Agent Skill that uses the plain HTTP API — no MCP server required:
@@ -47,8 +57,10 @@ It writes the audio plus a `sounds.json` manifest recording each file's source U
 | `get_sound_set` | Candidates grouped by event and style (18 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
 | `search_sounds` | Free-text retrieval with explicit duration, loop and format requirements; hard constraints can produce no candidates |
 | `get_sound` | Full metadata for one sound (incl. a short description, measured acoustics, license) |
+| `generate_sound` | Make a new sound from a description when the library has nothing suitable. Needs an API key; one credit per generation of up to four CC0 WAV takes, given back if none can be made |
+| `get_generation` | Status of a generation and fresh download links for its takes |
 
-`generate_sound` and `get_job` are **retired** and no longer advertised. Both are still recognised — calling either returns a readable retirement notice with `isError`, rather than an unknown-tool error — but neither appears in `tools/list`. `POST /api/v1/generate` returns HTTP 410 `generation_retired`; existing job records stay readable at `GET /api/v1/jobs/{job_id}`. The API and this server do not create sounds. When nothing in the library fits (search returns `generate_available`), the user can make the sound on the website at https://sfxmint.com/generate: free previews, then sign up to keep the ones they like.
+The four library tools never need a key. Generation needs an [SFXMint API key](https://sfxmint.com/dashboard/keys) in the `Authorization` header (a free account comes with free credits); without one, `generate_sound` answers `api_key_required` with `isError`. Ask the user before spending credits, and let them listen to the takes. The same generation is available over REST as `POST https://sfxmint.com/api/v1/orders` ([docs](https://sfxmint.com/api/docs#authentication)). `get_job` and `POST /api/v1/generate` stay retired; existing job records remain readable at `GET /api/v1/jobs/{job_id}`.
 
 ## Requirements, processing and acceptance
 
