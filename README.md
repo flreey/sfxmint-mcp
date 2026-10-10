@@ -57,18 +57,18 @@ It writes the audio plus a `sounds.json` manifest recording each file's source U
 | `get_sound_set` | Candidates grouped by event and style (18 sets: `ui-crisp`, `retro-game`, `checkout`, `platformer`, `ai-coding-tool`, …) |
 | `search_sounds` | Free-text retrieval with explicit duration, loop and format requirements; hard constraints can produce no candidates |
 | `get_sound` | Full metadata for one sound (incl. a short description, measured acoustics, license) |
-| `generate_sound` | Make a new sound from a description when the library has nothing suitable. Needs an API key; one credit per generation of up to four CC0 WAV takes, given back if none can be made |
+| `generate_sound` | Make a new sound from a description when the library has nothing suitable. Needs an API key; free: 3 generations a day per account (50 to 200 with a plan), each up to 4 CC0 WAV takes of up to 10 s; one that makes no take does not count |
 | `get_generation` | Status of a generation and fresh download links for its takes |
 
-The four library tools never need a key. Generation needs an [SFXMint API key](https://sfxmint.com/dashboard/keys) in the `Authorization` header (a free account comes with free credits); without one, `generate_sound` answers `api_key_required` with `isError`. Ask the user before spending credits, and let them listen to the takes. The same generation is available over REST as `POST https://sfxmint.com/api/v1/orders` ([docs](https://sfxmint.com/api/docs#authentication)). `get_job` and `POST /api/v1/generate` stay retired; existing job records remain readable at `GET /api/v1/jobs/{job_id}`.
+The four library tools never need a key. Generation needs an [SFXMint API key](https://sfxmint.com/dashboard/keys) in the `Authorization` header (free account); without one, `generate_sound` answers `api_key_required` with `isError`. Ask the user before using a generation, and let them listen to the takes. The same generation is available over REST as `POST https://sfxmint.com/api/v1/orders` ([docs](https://sfxmint.com/api/docs#authentication)). `get_job` and `POST /api/v1/generate` stay retired; existing job records remain readable at `GET /api/v1/jobs/{job_id}`.
 
 ## Requirements, processing and acceptance
 
-Use REST structured search (`response=structured&limit=3`) or the matching MCP parameters to pass required duration, loop and format explicitly. Check returned requirements; do not substitute `near_matches`. Scores and match types describe ranking, not listening confidence. Legacy `loopable` does not prove a seamless loop.
+Use REST structured search (`response=structured&limit=3`) or the matching MCP parameters to pass required duration, loop and format explicitly. Check returned requirements; do not substitute `near_matches`. When nothing matches every word, `closest` lists the nearest sounds that meet every hard requirement, each with `missing_terms`, and `library_fit` says how well the library covers the request. Scores and match types describe ranking, not listening confidence. Legacy `loopable` does not prove a seamless loop.
 
 Sets accept `format=wav|mp3`: `download_urls` follows the requested format, legacy `urls` stays MP3, and `missing_roles` identifies incomplete sets. File decoding and hashes do not certify scene suitability. `content_check` is scoped to the exact scene, event, format and SHA256; unknown content is not accepted.
 
-Task-permitted trimming, filtering and level changes are allowed. Retain originals, source URLs, license, processing recipes and new file hashes; re-measure requirements and preview the result. Changed bytes and new scenes do not inherit the original acceptance. The API and MCP server have no generation path; generating on the website, local synthesis or an external service remains a separate, task-authorized choice.
+Task-permitted trimming, filtering and level changes are allowed. Retain originals, source URLs, license, processing recipes and new file hashes; re-measure requirements and preview the result. Changed bytes and new scenes do not inherit the original acceptance. Generating (`generate_sound`, the website, local synthesis or an external service) remains a separate, task-authorized choice.
 
 Use URLs returned by the live API, without inventing or rewriting them. See the [API docs](https://sfxmint.com/api/docs), [Phaser guide](https://sfxmint.com/guides/phaser-web-game-sounds), [React guide](https://sfxmint.com/guides/react-app-sounds), and [download example](https://sfxmint.com/examples/download-sounds.mjs).
 
