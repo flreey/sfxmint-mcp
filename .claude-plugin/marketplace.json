@@ -1,0 +1,12 @@
+{
+  "name": "sfxmint",
+  "owner": { "name": "SFXMint", "url": "https://sfxmint.com" },
+  "description": "Free CC0 sound effects for Claude Code",
+  "plugins": [
+    {
+      "name": "sfxmint",
+      "source": "./",
+      "description": "Free CC0 sound effects for apps and games: the SFXMint MCP server and skill."
+    }
+  ]
+}

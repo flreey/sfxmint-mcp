@@ -11,7 +11,13 @@ Sounds are AI-generated or procedurally synthesized and offered under CC0. Audio
 
 ## Quick start
 
-Claude Code:
+Claude Code, as a plugin (the MCP server plus the skill below):
+
+```text
+/plugin install sfxmint --marketplace flreey/sfxmint-mcp
+```
+
+On Claude Code before 2.1.275, run `/plugin marketplace add flreey/sfxmint-mcp`, then `/plugin install sfxmint@sfxmint`. Or add only the MCP server:
 
 ```bash
 claude mcp add --transport http sfxmint https://sfxmint.com/mcp
