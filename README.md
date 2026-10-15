@@ -53,7 +53,7 @@ No agent involved? The [`sfxmint`](https://www.npmjs.com/package/sfxmint) CLI pu
 npx sfxmint add coin jump hit
 ```
 
-It writes the audio plus a `sounds.json` manifest recording each file's source URL, SHA-256 and license, and ships a small Web Audio runtime (`createSoundboard`) for first-gesture unlock, overlapping cues and a persisted mute. Source: [flreey/sfxmint-npm](https://github.com/flreey/sfxmint-npm).
+It writes the audio plus a `sounds.json` manifest recording each file's source URL, SHA-256 and license, and a `SOUNDS.md` table linking each sound's page, and ships a small Web Audio runtime (`createSoundboard`) for first-gesture unlock, overlapping cues and a persisted mute. Source: [flreey/sfxmint-npm](https://github.com/flreey/sfxmint-npm).
 
 ## Tools
 
@@ -66,7 +66,7 @@ It writes the audio plus a `sounds.json` manifest recording each file's source U
 | `generate_sound` | Make a new sound from a description when the library has nothing suitable. Needs an API key and a pass or plan on the account — a 24-hour pass ($3.90, 50 sounds) or a plan (from $9.90 for 30 days, 50 to 200 a day); the 3 free tries are on the website only — each up to 4 CC0 WAV takes of up to 10 s; one that makes no take does not count |
 | `get_generation` | Status of a generation and fresh download links for its takes |
 | `change_sound` | Change one take of a generation as it is, from the user's words or an action (too muddy, too close, make it loop): three versions, free, no generation used |
-| `start_game_kit`, `add_kit_sounds`, `fill_kit_from_library`, `make_kit_sounds`, `get_game_kit`, `pick_kit_take`, `change_kit_take`, `export_game_kit` | The sounds of a whole app or game as a kit, the same project the user can open in [AI Studio](https://sfxmint.com/studio): plan from a description or take the user's list, use free library sounds first, make only the gaps (each sound made uses the pass or plan), change a close take as it is (three versions, free), then export a ZIP with a `sounds.json` map of event to file. Planning and library sounds are free |
+| `start_game_kit`, `add_kit_sounds`, `fill_kit_from_library`, `make_kit_sounds`, `get_game_kit`, `pick_kit_take`, `change_kit_take`, `export_game_kit` | The sounds of a whole app or game as a kit, the same project the user can open in [AI Studio](https://sfxmint.com/studio): plan from a description or take the user's list, use free library sounds first, make only the gaps (each sound made uses the pass or plan), change a close take as it is (three versions, free), then export a ZIP with a `sounds.json` map of event to file and a `CREDITS.md` linking the library sounds it used. Planning and library sounds are free |
 
 The four library tools never need a key. Generation and kits need an [SFXMint API key](https://sfxmint.com/dashboard/keys) in the `Authorization` header (free account); without one, `generate_sound` answers `api_key_required` with `isError`. Making a sound also needs a pass or plan on the account: without one the answer is `payment_required` with `buy_url`, for the user to choose one ([pricing](https://sfxmint.com/pricing)); an agent never pays. Ask the user before making sounds, and let them listen to the takes. The same generation is available over REST as `POST https://sfxmint.com/api/v1/orders` ([docs](https://sfxmint.com/api/docs#authentication)). `get_job` and `POST /api/v1/generate` stay retired; existing job records remain readable at `GET /api/v1/jobs/{job_id}`.
 
