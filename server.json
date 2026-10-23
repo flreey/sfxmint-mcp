@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.sfxmint/sounds",
   "description": "Free CC0 sound effects for apps and games: search, roles and sets, no key; make one, 3 free tries.",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "websiteUrl": "https://sfxmint.com/api/docs",
   "remotes": [
     {
