@@ -5,7 +5,7 @@ description: "Add free CC0 sound effects to a web app or game without an API key
 
 # SFXMint — free CC0 sound effects for apps and games
 
-SFXMint (https://sfxmint.com) is a library of free CC0 sound effects (describe a sound to find it, preview, and download WAV/MP3) with a free JSON API: no API key, no signup, no attribution, no hard limit on lookups. Every audio URL is permanent and hotlinkable. Use it as an option for the user's task: a role for one event, a set for several related events, or search for a description. Text matches and file checks do not prove listening suitability. The user's task determines whether to use library files, other sources, local synthesis or a mixture.
+SFXMint (https://sfxmint.com) is a library of free CC0 sound effects (describe a sound to find it, preview, and download WAV/MP3) with a free JSON API: no API key, no signup, no attribution, no hard limit on lookups. File downloads without a key: 20 different sounds a day per network (50 with a free account's API key; any purchase removes the limit for 30 days). Every audio URL is permanent and hotlinkable. Use it as an option for the user's task: a role for one event, a set for several related events, or search for a description. Text matches and file checks do not prove listening suitability. The user's task determines whether to use library files, other sources, local synthesis or a mixture.
 
 ## Use this skill when
 
@@ -35,7 +35,7 @@ These are task branches, not a required sequence. A whole-project request can st
    - MCP: `generate_sound` and `get_generation`, with the key in the MCP server's `Authorization` header.
    - Describing the sound: say what the user needs in plain words, in any language (what it is for and what should be heard), with `"enhance": true`; SFXMint writes the description the model gets, and the order shows it as `enhanced_prompt`. Leave out lengths (use `duration_s`).
    - Changing a take: when a take is close but something is off ("too muddy", "make it loop", "too close"), change that take rather than generating again: MCP `change_sound` with the order, the take and the user's words (or an `action`), or REST `POST /api/v1/orders` with `"refine": {"from": order_id, "take": n, "change": "act:<action>"}`. Three versions come back, made from the take itself; this is free and uses no generation. When the words ask for a different sound, `change_sound` says so and gives a description for `generate_sound`.
-   - Without a key, give the user `generate_available.page` (the sound can be made on the website, free to make and hear: 3 a day without an account, 10 a day with a free account; downloading it takes HD, CC0: one credit a generation, or a plan), or use local synthesis. The old `POST /api/v1/generate` stays retired (HTTP 410).
+   - Without a key, give the user `generate_available.page` (the sound can be made on the website, free to make and hear: 3 a day without an account, 10 a day with a free account; a free account downloads its first 3 free for personal, non-commercial use; commercial use (HD, CC0): one credit a generation, or a plan), or use local synthesis. The old `POST /api/v1/generate` stays retired (HTTP 410).
    - Generated sounds are AI-made: the same content and listening rules as library files apply.
 5. **A whole game** — the user wants the sounds for their game, not one cue. Take what the library has first (a set such as `platformer`, roles, search). For each sound still missing, make it on its own: `generate_sound` with an API key, one sound per call (the account's 1 free try, then credits or a plan, as above), or give the user `generate_available.page` from the search and list it under a Missing heading in SOUNDS.md. SFXMint makes one sound at a time: Game kits (projects of many sounds) closed on 2026-10-20, and their MCP tools answer `tool_retired`.
 
@@ -156,7 +156,8 @@ Loops: inspect the returned `loop_status` and seam evidence, then use a WAV with
 
 ## Hotlink rules
 
-- `/dl/{slug}.mp3` and `/dl/{slug}.wav` are permanent and immutable (`Cache-Control: immutable`, CORS `*`). Hotlinking is allowed and encouraged: no key, no referer check, no expiry.
+- `/dl/{slug}.mp3` and `/dl/{slug}.wav` are permanent and immutable (`Cache-Control: immutable`, CORS `*`). Hotlinking from a web page is allowed and encouraged: no key, no referer check, no expiry, and a browser playing a file is never counted.
+- Downloads that are not a browser (curl, scripts, your own fetches) count toward 20 different sounds a day per network; a second format or a retry of the same sound is not counted again. Past it a file answers `429` with `{"error": "download_limit", "message": ...}`: tell the user the message as it is, and do not retry from another address. With a key, file URLs in API answers carry a signed `g=` (48 hours): download them as given, but record `page_url` in SOUNDS.md, never a URL with `g=`.
 - Never append query parameters to `/dl/` URLs — `via=skill` belongs on `/api/v1/` requests only. Never rewrite, shorten or proxy them.
 - Bundling is fine: copying the files into `public/` or `assets/` is allowed (CC0) and is the right choice for offline builds and app stores.
 - Do not mirror the catalog in bulk; fetch what the project uses.

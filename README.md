@@ -2,6 +2,8 @@
 
 Free CC0 sound effects — [describe a sound to find it](https://sfxmint.com), preview, and download WAV/MP3. **No signup, no API key, no attribution.** Agents can [ask by role](https://sfxmint.com/roles), [take one of 18 sets](https://sfxmint.com/sets), or search the library, and get permanent hotlinkable URLs. When nothing in the library fits, search answers with one line for the user and a short link that opens the description in [AI Studio](https://sfxmint.com/studio), free to make and hear there. With an [API key](https://sfxmint.com/dashboard/keys) the agent can also generate the sound itself: the account's 1 free try first, then credits or a plan.
 
+Downloads have a daily allowance: without a key, 20 different sounds a day per network (a second format or a retry of the same sound is not counted again); with a free account's API key, 50 a day; any purchase removes the limit for 30 days, and file URLs returned to a keyed request carry a signed `g=` good for 48 hours. Past it a file answers `429 download_limit` with a message to pass on to the user. Listening in a browser is never counted. Keep `page_url` in SOUNDS.md, never a URL with `g=`.
+
 - **Endpoint (Streamable HTTP):** `https://sfxmint.com/mcp`
 - **Docs:** https://sfxmint.com/api/docs
 - **Registry:** published as [`com.sfxmint/sounds`](https://registry.modelcontextprotocol.io/v0/servers?search=sfxmint) on the official MCP Registry
