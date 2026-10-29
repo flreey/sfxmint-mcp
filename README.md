@@ -70,6 +70,10 @@ npx sfxmint add coin jump hit
 
 It writes the audio plus a `sounds.json` manifest recording each file's source URL, SHA-256 and license, and a `SOUNDS.md` table linking each sound's page, and ships a small Web Audio runtime (`createSoundboard`) for first-gesture unlock, overlapping cues and a persisted mute. Source: [flreey/sfxmint-npm](https://github.com/flreey/sfxmint-npm).
 
+## Tutorials
+
+- **[Add sound effects to a Remotion video with SFXMint MCP](examples/remotion/README.md)** — an 18-second runnable example with four timed cues, a finished video, a copy-and-paste agent prompt, and a read-only MCP check. [中文教程](examples/remotion/README.zh-CN.md).
+
 ## Tools
 
 | Tool | What it does |

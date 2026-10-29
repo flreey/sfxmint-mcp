@@ -1,0 +1,27 @@
+{
+  "name": "sfxmint-remotion-tutorial",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "CC0-1.0",
+  "scripts": {
+    "start": "remotion studio src/index.tsx",
+    "render": "remotion render src/index.tsx Daybook out/daybook.mp4",
+    "test": "tsc --noEmit && node scripts/verify.mjs",
+    "mcp:check": "node scripts/check-mcp.mjs"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.539",
+    "@remotion/media": "4.0.539",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "remotion": "4.0.539"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.0",
+    "typescript": "5.9.3"
+  },
+  "overrides": {
+    "zod": "4.6.6"
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "event": "click",
+    "atSeconds": 2,
+    "file": "audio/click.wav",
+    "original": "originals/click.wav",
+    "slug": "ui-click-08",
+    "pageUrl": "https://sfxmint.com/sounds/ui-click-08",
+    "sourceUrl": "https://sfxmint.com/dl/ui-click-08.wav",
+    "license": "CC0-1.0",
+    "originalSha256": "a8050320605145f189a17649f6258abb17682897e72832eddd2d38c4112e92ba",
+    "sha256": "7bf32c14f38d088f646facd54b7b8ab6342a78d3687f049a85f354d197234f95",
+    "fileDurationSeconds": 1.0,
+    "gainDb": 7.1480132987769975
+  },
+  {
+    "event": "transition",
+    "atSeconds": 6,
+    "file": "audio/transition.wav",
+    "original": "originals/transition.wav",
+    "slug": "short-video-whoosh-04",
+    "pageUrl": "https://sfxmint.com/sounds/short-video-whoosh-04",
+    "sourceUrl": "https://sfxmint.com/dl/short-video-whoosh-04.wav",
+    "license": "CC0-1.0",
+    "originalSha256": "58dd5b4253d471ab8553ae5e662cfa36ef0382924e98e65e4f9e478e023f756d",
+    "sha256": "460423b18c4803f58fafb3a5c76485b8edc106709f7bb536a79363fb9840b9bd",
+    "fileDurationSeconds": 0.49554166666666666,
+    "gainDb": -3.328929778882718
+  },
+  {
+    "event": "success",
+    "atSeconds": 10,
+    "file": "audio/success.wav",
+    "original": "originals/success.wav",
+    "slug": "feedback-success-51",
+    "pageUrl": "https://sfxmint.com/sounds/feedback-success-51",
+    "sourceUrl": "https://sfxmint.com/dl/feedback-success-51.wav",
+    "license": "CC0-1.0",
+    "originalSha256": "c1350573c98215145c575b4e32c949e6ca35e0304ea78ff147a4430c700f750e",
+    "sha256": "f748fec58d3924089ca6fe95fd01d62b271f41eb83f2fe33e2383345a5b6e882",
+    "fileDurationSeconds": 1.84425,
+    "gainDb": 6.1838639821915775
+  },
+  {
+    "event": "logo",
+    "atSeconds": 14,
+    "file": "audio/logo.wav",
+    "original": "originals/logo.wav",
+    "slug": "logo-reveal-03",
+    "pageUrl": "https://sfxmint.com/sounds/logo-reveal-03",
+    "sourceUrl": "https://sfxmint.com/dl/logo-reveal-03.wav",
+    "license": "CC0-1.0",
+    "originalSha256": "3f68657eb12ed35774fe9f6ffd78f7cbe40b778bda9bb5dcbbec9d5383fd4e9b",
+    "sha256": "77b43e60069d17aebd4c54269062a314784a800f03c789c0c91a2f3f3cfbe016",
+    "fileDurationSeconds": 2.1201041666666667,
+    "gainDb": 0.2699820472066729
+  }
+]
