@@ -25,6 +25,19 @@ On Claude Code before 2.1.275, run `/plugin marketplace add flreey/sfxmint-mcp`,
 claude mcp add --transport http sfxmint https://sfxmint.com/mcp
 ```
 
+Gemini CLI, as an extension (the MCP server, a context file and the skill):
+
+```bash
+gemini extensions install https://github.com/flreey/sfxmint-mcp
+```
+
+Codex CLI, as a plugin (the MCP server plus the skill):
+
+```bash
+codex plugin marketplace add flreey/sfxmint-mcp
+codex plugin add sfxmint@sfxmint
+```
+
 Cursor / generic `mcpServers` config:
 
 ```json
