@@ -90,7 +90,7 @@ The four library tools never need a key. When nothing fits, pass `user_message` 
 
 Use REST structured search (`response=structured&limit=3`) or the matching MCP parameters to pass required duration, loop and format explicitly. Check returned requirements; do not substitute `near_matches`. When nothing matches every word, `closest` lists the nearest sounds that meet every hard requirement, each with `missing_terms`, and `library_fit` says how well the library covers the request. Scores and match types describe ranking, not listening confidence. Legacy `loopable` does not prove a seamless loop.
 
-Sets accept `format=wav|mp3`: `download_urls` follows the requested format, legacy `urls` stays MP3, and `missing_roles` identifies incomplete sets. File decoding and hashes do not certify scene suitability. `content_check` is scoped to the exact scene, event, format and SHA256; unknown content is not accepted.
+Sets accept `format=wav|mp3`: `download_urls` follows the requested format, legacy `urls` stays MP3, and `missing_roles` identifies incomplete sets. File decoding and hashes do not certify scene suitability.
 
 Task-permitted trimming, filtering and level changes are allowed. Retain originals, source URLs, license, processing recipes and new file hashes; re-measure requirements and preview the result. Changed bytes and new scenes do not inherit the original acceptance. Generating (`generate_sound`, the website, local synthesis or an external service) remains a separate, task-authorized choice.
 
