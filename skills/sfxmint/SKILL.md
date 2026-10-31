@@ -35,7 +35,7 @@ These are task branches, not a required sequence. A whole-project request can st
    - MCP: `generate_sound` and `get_generation`, with the key in the MCP server's `Authorization` header.
    - Describing the sound: say what the user needs in plain words, in any language (what it is for and what should be heard), with `"enhance": true`; SFXMint writes the description the model gets, and the order shows it as `enhanced_prompt`. Leave out lengths (use `duration_s`).
    - Changing a take: when a take is close but something is off ("too muddy", "make it loop", "too close"), change that take rather than generating again: MCP `change_sound` with the order, the take and the user's words (or an `action`), or REST `POST /api/v1/orders` with `"refine": {"from": order_id, "take": n, "change": "act:<action>"}`. Three versions come back, made from the take itself; this is free and uses no generation. When the words ask for a different sound, `change_sound` says so and gives a description for `generate_sound`.
-   - Without a key, give the user `generate_available.page` (the sound can be made on the website, free to make and hear: 3 a day without an account, 10 a day with a free account; a free account downloads its first 3 free for personal, non-commercial use; commercial use (HD, CC0): one credit a generation, or a plan), or use local synthesis. The old `POST /api/v1/generate` stays retired (HTTP 410).
+   - Without a key, give the user `generate_available.page` (the sound can be made on the website, free to make and hear: 3 a day; a free account downloads its first 3 free for personal, non-commercial use; commercial use (HD, CC0): one credit a generation, or a plan), or use local synthesis. The old `POST /api/v1/generate` stays retired (HTTP 410).
    - Generated sounds are AI-made: the same content and listening rules as library files apply.
 5. **A whole game** — the user wants the sounds for their game, not one cue. Take what the library has first (a set such as `platformer`, roles, search). For each sound still missing, make it on its own: `generate_sound` with an API key, one sound per call (the account's 1 free try, then credits or a plan, as above), or give the user `generate_available.page` from the search and list it under a Missing heading in SOUNDS.md. SFXMint makes one sound at a time: Game kits (projects of many sounds) closed on 2026-10-20, and their MCP tools answer `tool_retired`.
 
@@ -102,7 +102,7 @@ After checking conditions, use URLs from the current API response; the values be
 // src/sfx.ts
 const URLS = {
   click: "https://sfxmint.com/dl/ui-click-30.mp3",
-  save: "https://sfxmint.com/dl/ready-success-01.mp3",
+  save: "https://sfxmint.com/dl/feedback-success-56.mp3",
   error: "https://sfxmint.com/dl/feedback-error-34.mp3",
 } as const;
 
@@ -133,7 +133,7 @@ Use: `onClick={() => { play("click"); save(); }}`. Guide: https://sfxmint.com/gu
 ### Phaser 3
 
 ```js
-const SFX = { jump: "https://sfxmint.com/dl/retro-game-jump-06.mp3", coin: "https://sfxmint.com/dl/retro-game-coin-13.mp3" }; // urls map from GET /api/v1/sets/platformer?via=skill
+const SFX = { jump: "https://sfxmint.com/dl/retro-game-jump-01.mp3", coin: "https://sfxmint.com/dl/retro-game-coin-52.mp3" }; // urls map from GET /api/v1/sets/platformer?via=skill
 
 preload() {
   for (const [key, url] of Object.entries(SFX)) this.load.audio(key, url);
