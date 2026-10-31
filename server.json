@@ -2,8 +2,13 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.sfxmint/sounds",
   "description": "Free CC0 sound effects for apps and games: roles, sets, search; 20 keyless downloads a day; make one",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "websiteUrl": "https://sfxmint.com/api/docs",
+  "repository": {
+    "url": "https://github.com/sfxmint/sfxmint-mcp",
+    "source": "github",
+    "id": "1353607220"
+  },
   "remotes": [
     {
       "type": "streamable-http",
