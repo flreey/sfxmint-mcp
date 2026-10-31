@@ -12,6 +12,7 @@
   "interface": {
     "displayName": "SFXMint",
     "shortDescription": "Free CC0 sound effects for apps and games.",
+    "composerIcon": "./assets/icon.png",
     "longDescription": "Finds sound effects in the SFXMint library by game or app event, as a matching set, or by description, and downloads the MP3 or WAV files into the project with a SOUNDS.md record. Search and downloads need no API key; every sound is CC0 and AI-generated.",
     "developerName": "SFXMint",
     "category": "Media",
