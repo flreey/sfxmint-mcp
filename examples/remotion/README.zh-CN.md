@@ -13,7 +13,7 @@ MCP 负责找声音，Remotion 负责安排时间和渲染。每次渲染都使�
 需要 Node.js 22 或更新版本和 npm：
 
 ```bash
-git clone https://github.com/flreey/sfxmint-mcp.git
+git clone https://github.com/sfxmint/sfxmint-mcp.git
 cd sfxmint-mcp/examples/remotion
 npm ci
 npm test

@@ -16,10 +16,10 @@ Sounds are AI-generated or procedurally synthesized and offered under CC0. Audio
 Claude Code, as a plugin (the MCP server plus the skill below):
 
 ```text
-/plugin install sfxmint --marketplace flreey/sfxmint-mcp
+/plugin install sfxmint --marketplace sfxmint/sfxmint-mcp
 ```
 
-On Claude Code before 2.1.275, run `/plugin marketplace add flreey/sfxmint-mcp`, then `/plugin install sfxmint@sfxmint`. Or add only the MCP server:
+On Claude Code before 2.1.275, run `/plugin marketplace add sfxmint/sfxmint-mcp`, then `/plugin install sfxmint@sfxmint`. Or add only the MCP server:
 
 ```bash
 claude mcp add --transport http sfxmint https://sfxmint.com/mcp
@@ -28,13 +28,13 @@ claude mcp add --transport http sfxmint https://sfxmint.com/mcp
 Gemini CLI, as an extension (the MCP server, a context file and the skill):
 
 ```bash
-gemini extensions install https://github.com/flreey/sfxmint-mcp
+gemini extensions install https://github.com/sfxmint/sfxmint-mcp
 ```
 
 Codex CLI, as a plugin (the MCP server plus the skill):
 
 ```bash
-codex plugin marketplace add flreey/sfxmint-mcp
+codex plugin marketplace add sfxmint/sfxmint-mcp
 codex plugin add sfxmint@sfxmint
 ```
 
@@ -57,7 +57,7 @@ claude mcp add --transport http sfxmint https://sfxmint.com/mcp --header "Author
 Prefer a skill over a server? This repo also ships an Agent Skill that uses the plain HTTP API — no MCP server required:
 
 ```bash
-npx skills add flreey/sfxmint-mcp -y
+npx skills add sfxmint/sfxmint-mcp -y
 ```
 
 The agent chooses a role for one event, a set for several events, or structured search for a description or gap. These are task branches, not a required sequence. Library files, other permitted sources and local synthesis can be mixed. The skill includes React / Phaser / plain-HTML integration examples. Source: [`skills/sfxmint/SKILL.md`](skills/sfxmint/SKILL.md).
@@ -68,7 +68,7 @@ No agent involved? The [`sfxmint`](https://www.npmjs.com/package/sfxmint) CLI pu
 npx sfxmint add coin jump hit
 ```
 
-It writes the audio plus a `sounds.json` manifest recording each file's source URL, SHA-256 and license, and a `SOUNDS.md` table linking each sound's page, and ships a small Web Audio runtime (`createSoundboard`) for first-gesture unlock, overlapping cues and a persisted mute. Source: [flreey/sfxmint-npm](https://github.com/flreey/sfxmint-npm).
+It writes the audio plus a `sounds.json` manifest recording each file's source URL, SHA-256 and license, and a `SOUNDS.md` table linking each sound's page, and ships a small Web Audio runtime (`createSoundboard`) for first-gesture unlock, overlapping cues and a persisted mute. Source: [sfxmint/sfxmint-npm](https://github.com/sfxmint/sfxmint-npm).
 
 ## Tutorials
 

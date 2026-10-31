@@ -13,7 +13,7 @@ SFXMint provides AI-generated/synthesized CC0 library sounds. Library lookup nee
 Use Node.js 22 or newer and npm:
 
 ```bash
-git clone https://github.com/flreey/sfxmint-mcp.git
+git clone https://github.com/sfxmint/sfxmint-mcp.git
 cd sfxmint-mcp/examples/remotion
 npm ci
 npm test
